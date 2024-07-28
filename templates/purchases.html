@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Your Purchases</h2>
+    {% if purchases %}
+    <ul>
+        {% for purchase in purchases %}
+            <li>
+                {{ purchase.product_name }} - {{ purchase.price }} - Purchased on {{ purchase.purchase_date }}
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>You have not purchased any products yet.</p>
+    {% endif %}
+{% endblock %}

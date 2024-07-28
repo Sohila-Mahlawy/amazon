@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Shop</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/products">Products</a></li>
+        {% if current_user.is_authenticated %}
+        <li><a href="/purchases">Purchases</a></li>
+        <li><a href="/add_product">Add Product</a></li>
+        <li><a href="/logout">Logout</a></li>
+        {% else %}
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+        {% endif %}
+    </ul>
+</nav>
+<div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul>
+        {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</div>
+
+{% block content %}{% endblock %}
+</body>
+</html>

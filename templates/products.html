@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<ul>
+    {% for product in products %}
+    <li>
+        {{ product.name }} - {{ product.price }}
+        <form action="{{ url_for('buy', product_id=product.id) }}" method="post" style="display:inline;">
+            <button type="submit">Buy</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
